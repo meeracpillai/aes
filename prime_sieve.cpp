@@ -13,14 +13,14 @@ return: prime numbers
 using namespace std;
 
 //Generate prime number untill n
-vector<bool> prime_generator(int number) {
-    int n =  number;
+vector<bool> prime_generator(unsigned long number) {
+    unsigned long n = number;
 
     vector<bool> vec(n+1,true);
     vec[0]=vec[1]=false;
-    for(int i=2; i<=n; i++){
+    for(unsigned long i=2; i<=n; i++){
        if (vec[i]==true && (long long)i * i <= n){
-        for(int j=i*i; j<=n; j+=i ){
+        for(unsigned long j=i*i; j<=n; j+=i ){
             vec[j]=false;
             
         }
@@ -37,11 +37,11 @@ vector<bool> prime_generator(int number) {
 
 
 int main() {
-    int n;
+    unsigned long n;
    
     std::cin>>n;
     std::vector <bool> result = prime_generator(n);
-    for (int i =2; i<=n; i++) {
+    for (unsigned long i =2; i<=n; i++) {
         if(result[i]==true){
             cout<< "\n"<<i;
         }
