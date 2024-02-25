@@ -12,12 +12,12 @@ return: prime numbers
 #include <bitset>
 using namespace std;
 
-//Generate prime number untill n
-vector<bool> prime_generator(unsigned long number) {
-    unsigned long n = number;
+//Generate prime number untill given the odd
+vector<bool> prime_generator(vector<bool> odd_sieve) {
 
-    vector<bool> vec(n+1,true);
-    vec[0]=vec[1]=false;
+    vector<bool> vec = odd_sieve;
+    unsigned long n = vec.size();
+
     for(unsigned long i=2; i<=n; i++){
        if (vec[i]==true && (long long)i * i <= n){
         for(unsigned long j=i*i; j<=n; j+=i ){
@@ -34,13 +34,29 @@ vector<bool> prime_generator(unsigned long number) {
 
 
 }
+//odd generator
+vector<bool> odd_generator(unsigned long number) {
+    vector<bool> vec(number+1,true);
+    vec[0]=vec[1]=false;
+    for (unsigned long i = 2; i<=number; i++) {
+        if(i%2==0){
+            vec[i]=false;
+        }
+
+    }
+   vector<bool> sieve = prime_generator(vec);
+    
+return sieve;
+}
+
+
+
 
 
 int main() {
     unsigned long n;
-   
-    std::cin>>n;
-    std::vector <bool> result = prime_generator(n);
+   cin>>n;
+    std::vector<bool> result = odd_generator(n) ;
     for (unsigned long i =2; i<=n; i++) {
         if(result[i]==true){
             cout<< "\n"<<i;
